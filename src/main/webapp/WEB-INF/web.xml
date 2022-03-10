@@ -19,4 +19,17 @@
     <servlet-name>LoginMainServlet</servlet-name>
     <url-pattern>/LoginMainServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SignupMainServlet</display-name>
+    <servlet-name>SignupMainServlet</servlet-name>
+    <servlet-class>com.controller.SignupMainServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SignupMainServlet</servlet-name>
+    <url-pattern>/SignupMainServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  <listener><listener-class>com.listner.DBConnectionJoin</listener-class></listener>
 </web-app>

@@ -63,6 +63,7 @@
                           <input type="password" id="form2Example22" class="form-control" placeholder="Password" name="password_l"/>
                           <label class="form-label" for="form2Example22">Password</label>
                           <p class="text-danger">${password_EL }</p>
+                          <p class="text-danger">${INCorrectDATA_DB }</p>
                         </div>
       
                         <div class="text-center pt-1 pb-1 ">

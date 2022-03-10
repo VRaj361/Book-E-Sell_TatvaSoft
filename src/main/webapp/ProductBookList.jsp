@@ -28,7 +28,7 @@
             </ul>
           </div>
           <form class="d-flex">
-            <img src="858715_add_add to cart_cart_shopping cart_shopping cart icon_icon.png" class="mx-2 btn-close-white" >
+            <img src="IMAGES/858715_add_add to cart_cart_shopping cart_shopping cart icon_icon.png" class="mx-2 btn-close-white" >
             <button class="btn  text-white addtocard fw-bold" type="submit">Add to Cart</button>
           </form>
         </div>

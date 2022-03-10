@@ -13,33 +13,34 @@ import com.bean.AddLoginDatabean;
 import com.dao.BookESellDao;
 
 
-public class LoginMainServlet extends HttpServlet {
-	
+public class SignupMainServlet extends HttpServlet {
+
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username=request.getParameter("username_l");
-		String password=request.getParameter("password_l");
-		
+		String fullname=request.getParameter("fullname_s");
+		String username=request.getParameter("username_s");
+		String password=request.getParameter("password_s");
+		System.out.println("in servlet login");
 		AddLoginDatabean bean=new AddLoginDatabean();
+		bean.setFullname(fullname);
 		bean.setUsername(username);
 		bean.setPassword(password);
 		
 		BookESellDao dao=new BookESellDao();
-		int check=-1;
+		int userid=-1;
 		try {
-			check=dao.CheckData(bean);
+			userid=dao.insertDataDB(bean);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(check!=-1) {
-			HttpSession session=request.getSession();
-			session.setAttribute("userid", check);
-			System.out.println(session.getAttribute("userid"));
-			response.sendRedirect("ProductBookList.jsp");
-		}else {
-			request.setAttribute("INCorrectDATA_DB", "User Doesn't exists");
-			request.getRequestDispatcher("LoginMain.jsp").forward(request, response);
-		}
+		HttpSession session=request.getSession();
+		session.setAttribute("userid", userid);
+		//session code
+		
+		response.sendRedirect("BookESellHomeJSP.jsp");
+		
+		
+		
 	}
 
 }

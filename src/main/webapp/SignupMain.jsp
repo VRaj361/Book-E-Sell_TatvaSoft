@@ -52,29 +52,34 @@
                         <h4 class="mt-1 mb-1 pb-1">A good book is an event in my life.</h4>
                       </div>
       
-                      <form>
+                      <form action="SignupMainServlet" method="get">
                         <p>Register to your account</p>
       
                         <div class="form-outline mb-2 ">
-                          <input type="text" id="form2Example11" class="form-control" placeholder="Full Name"/>
+                          <input type="text" id="form2Example11" class="form-control" placeholder="Full Name" name="fullname_s"/>
                           <label class="form-label" for="form2Example11">Full Name</label>
+                          <p class="text-danger">${fullname_ES }</p>
                         </div>
                         <div class="form-outline mb-2">
-                          <input type="email" id="form2Example11" class="form-control" placeholder="Phone number or email address"/>
+                          <input type="text" id="form2Example11" class="form-control" placeholder="Phone number or email address" name="username_s"/>
                           <label class="form-label" for="form2Example11">Username</label>
+                          <p class="text-danger">${username_ES }</p>
                         </div>
       
                         <div class="form-outline mb-2">
-                          <input type="password" id="form2Example22" class="form-control" placeholder="Password" />
+                          <input type="password" id="form2Example22" class="form-control" placeholder="Password" name="password_s"/>
                           <label class="form-label" for="form2Example22">Password</label>
+                          <p class="text-danger">${password_ES }</p>
                         </div>
                         <div class="form-outline mb-4">
-                          <input type="password" id="form2Example22" class="form-control" placeholder="Password" />
+                          <input type="password" id="form2Example22" class="form-control" placeholder="Password" name="cpassword_s"/>
                           <label class="form-label" for="form2Example22">Confirm Password</label>
+                          <p class="text-danger">${password_ES }</p>
+                          <p class="text-danger">${cpassword_ES }</p>
                         </div>
       
                         <div class="text-center pt-1 pb-1 ">
-                          <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 form-control " type="button">Sign Up</button>
+                          <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 form-control " type="submit">Sign Up</button>
                          
                         </div>  
                         
