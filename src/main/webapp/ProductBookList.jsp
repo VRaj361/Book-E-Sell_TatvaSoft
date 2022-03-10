@@ -1,3 +1,5 @@
+<%@page import="com.bean.SetDataBook"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -9,6 +11,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
+<%int userid=(Integer)session.getAttribute("userid"); 
+
+	ArrayList<SetDataBook> arr=(ArrayList<SetDataBook>)request.getAttribute("getAllData_Ed");
+%>
+
+<%if(userid==0||arr==null){ %>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-white gradient-custom-2 ">
         <div class="container-fluid">
             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp" style="width: 55px;
@@ -20,11 +28,9 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item mx-2">
-                <a class="nav-link active addtocard"  href="#">Login</a>
+                <a class="nav-link active addtocard "  href="EditPage.jsp">Add Product</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link addtocard" href="#">Register</a>
-              </li>
+              
             </ul>
           </div>
           <form class="d-flex">
@@ -39,13 +45,15 @@
     <div class="container mt-4 w-50">
         <div class="input-group">
             <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" class="btn btn-outline-primary gradient-custom-2 text-white">search</button>
+            <button type="button" class="btn btn-outline-primary gradient-custom-2 mr-5 text-white">search</button>
+       <!--      <button class="btn gradient-custom-2 btn-outline-primary ml-5 text-white">Add Product</button> -->
           </div>
     </div>
 
     <!-- heading  -->
     <hr class="mx-5">
     <h1 class="text-center ">Book List</h1>
+    
     <hr class="mx-5">
 
 
@@ -146,5 +154,90 @@
         </div>
     </footer>
     <!-- Footer -->
+    <%}else{ %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-white gradient-custom-2 ">
+        <div class="container-fluid">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp" style="width: 55px;
+                         " alt="logo">
+          <a class="navbar-brand fw-bold" href="#">FlipBook</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item mx-2">
+                <a class="nav-link active addtocard "  href="EditPage.jsp">Add Product</a>
+              </li>
+              
+            </ul>
+          </div>
+          <form class="d-flex">
+            <img src="IMAGES/858715_add_add to cart_cart_shopping cart_shopping cart icon_icon.png" class="mx-2 btn-close-white" >
+            <button class="btn  text-white addtocard fw-bold" type="submit">Add to Cart</button>
+          </form>
+        </div>
+    </nav>
+    <!-- end of navbar -->
+
+    <!-- searchbar -->
+    <div class="container mt-4 w-50">
+        <div class="input-group">
+            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" class="btn btn-outline-primary gradient-custom-2 mr-5 text-white">search</button>
+       <!--      <button class="btn gradient-custom-2 btn-outline-primary ml-5 text-white">Add Product</button> -->
+          </div>
+    </div>
+
+    <!-- heading  -->
+    <hr class="mx-5">
+    <h1 class="text-center ">Book List</h1>
+    
+    <hr class="mx-5">
+
+
+    <!-- card show -->
+    <div class="container">
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-4 mb-4">
+       <%for(SetDataBook bean:arr){ %>
+          <div class="col">
+            <div class="card h-100">
+              <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Ym9va3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" class="card-img-top h-50" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><%=bean.getTitle() %></h5>
+                <p class="card-text"><%=bean.getDescription() %></p>
+                <h4>MRP &#x20b9 <strike><%=bean.getPrice() %></strike> <span style=color:chartreuse>30% OFF</span></h4>
+                <h4>&#x20b9 <%=bean.getPrice()-((bean.getPrice()*30)/100) %></h4>
+                <a href="#" class="btn btn-primary gradient-custom-2">Add to Cart</a>
+              </div>
+            </div>
+          </div>
+          
+          
+          <%} %>
+          <!-- <div class="col">
+            <div class="card h-100">
+              <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGJvb2t8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" class="card-img-top h-50" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <a href="#" class="btn btn-primary gradient-custom-2">Go somewhere</a>
+              </div>
+            </div>
+          </div> -->
+      </div>
+    </div>
+
+
+    <!-- cards list -->
+
+
+    <!-- Footer -->
+    <footer class="page-footer font-small blue gradient-custom-2 fixed-bottom mt-4">
+        <div class="footer-copyright text-center py-3 text-white">© 2020 Copyright:
+        <a href="https://FlipBook.com/" class="text-white"> Flipbook.com</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+    <%} %>
 </body>
 </html>

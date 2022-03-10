@@ -29,7 +29,17 @@
     <servlet-name>SignupMainServlet</servlet-name>
     <url-pattern>/SignupMainServlet</url-pattern>
   </servlet-mapping>
-  
-  
-  <listener><listener-class>com.listner.DBConnectionJoin</listener-class></listener>
+  <listener>
+    <listener-class>com.listner.DBConnectionJoin</listener-class>
+  </listener>
+  <servlet>
+    <description></description>
+    <display-name>EditMainServlet</display-name>
+    <servlet-name>EditMainServlet</servlet-name>
+    <servlet-class>com.controller.EditMainServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditMainServlet</servlet-name>
+    <url-pattern>/EditMainServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
