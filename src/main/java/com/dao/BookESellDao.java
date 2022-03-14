@@ -92,9 +92,51 @@ public class BookESellDao {
 			bean.setDescription(r.getString("description"));
 			bean.setPrice(r.getInt("price"));
 			bean.setQty(r.getInt("qty"));
+			bean.setProductid(r.getInt("productid"));
 			arr.add(bean);
 		}
 		return arr;
+		
+	}
+	
+	
+	
+	public ArrayList<SetDataBook> getAllDataAM(int productid) throws SQLException{
+		ArrayList<SetDataBook> arr=new ArrayList<SetDataBook>();
+		PreparedStatement pre=DBConnection.con.prepareStatement("select * from productsa where productid =?");
+		pre.setInt(1, productid);
+		ResultSet r= pre.executeQuery();
+		while(r.next()) {
+			SetDataBook bean=new SetDataBook();
+			bean.setFullname(r.getString("fullname"));
+			bean.setTitle(r.getString("title"));
+			bean.setUrl(r.getString("url"));
+			bean.setSelecttype(r.getString("selecttype"));
+			bean.setDescription(r.getString("description"));
+			bean.setPrice(r.getInt("price"));
+			bean.setQty(r.getInt("qty"));
+			bean.setProductid(r.getInt("productid"));
+			arr.add(bean);
+		}
+		return arr;
+		
+	}
+	
+	
+	public void modifyData(SetDataBook bean) throws SQLException{
+		
+		PreparedStatement pre=DBConnection.con.prepareStatement("update productsa set fullname=?,title=?,description=?,url=?,price=?,qty=?  where productid=?");
+		pre.setString(1,bean.getFullname());
+		pre.setString(2,bean.getTitle());
+		pre.setString(3, bean.getDescription());
+		pre.setString(4,bean.getUrl());
+		pre.setInt(5, bean.getPrice());
+		pre.setInt(6,bean.getQty());
+		pre.setInt(7, bean.getProductid());
+//		pre.setInt(1, productid);
+		int row= pre.executeUpdate();
+		System.out.println(row+" row updated");
+		
 		
 	}
 	

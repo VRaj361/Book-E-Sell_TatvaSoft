@@ -42,4 +42,44 @@
     <servlet-name>EditMainServlet</servlet-name>
     <url-pattern>/EditMainServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditPredefineServlet</display-name>
+    <servlet-name>EditPredefineServlet</servlet-name>
+    <servlet-class>com.controller.EditPredefineServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditPredefineServlet</servlet-name>
+    <url-pattern>/EditPredefineServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditDataServlet</display-name>
+    <servlet-name>EditDataServlet</servlet-name>
+    <servlet-class>com.controller.EditDataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditDataServlet</servlet-name>
+    <url-pattern>/EditDataServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditDataServletModify</display-name>
+    <servlet-name>EditDataServletModify</servlet-name>
+    <servlet-class>com.controller.EditDataServletModify</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditDataServletModify</servlet-name>
+    <url-pattern>/EditDataServletModify</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditDataServletModify1</display-name>
+    <servlet-name>EditDataServletModify1</servlet-name>
+    <servlet-class>com.controller.EditDataServletModify1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditDataServletModify1</servlet-name>
+    <url-pattern>/EditDataServletModify1</url-pattern>
+  </servlet-mapping>
 </web-app>

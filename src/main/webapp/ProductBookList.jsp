@@ -14,6 +14,7 @@
 <%int userid=(Integer)session.getAttribute("userid"); 
 
 	ArrayList<SetDataBook> arr=(ArrayList<SetDataBook>)request.getAttribute("getAllData_Ed");
+	
 %>
 
 <%if(userid==0||arr==null){ %>
@@ -207,7 +208,11 @@
                 <p class="card-text"><%=bean.getDescription() %></p>
                 <h4>MRP &#x20b9 <strike><%=bean.getPrice() %></strike> <span style=color:chartreuse>30% OFF</span></h4>
                 <h4>&#x20b9 <%=bean.getPrice()-((bean.getPrice()*30)/100) %></h4>
-                <a href="#" class="btn btn-primary gradient-custom-2">Add to Cart</a>
+                  <a href="EditDataServlet?productid=<%=bean.getProductid()%>" class="btn btn-primary gradient-custom-2">Edit</a> 
+               <!--  <form action="EditDataServlet?productid=<%=bean.getProductid()%>">
+                <button class="btn btn-primary gradient-custom-2" >Edit</button>
+                </form> -->
+                
               </div>
             </div>
           </div>

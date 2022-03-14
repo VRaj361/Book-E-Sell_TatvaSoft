@@ -4,6 +4,13 @@ public class SetDataBook {
 	
 	String fullname,title,selecttype,description,url;
 	int qty,price,userid;
+	int productid;
+	public int getProductid() {
+		return productid;
+	}
+	public void setProductid(int productid) {
+		this.productid = productid;
+	}
 	public int getUserid() {
 		return userid;
 	}
