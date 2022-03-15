@@ -4,6 +4,20 @@ public class AddLoginDatabean {
 	String fullname;
 	String username;
 	String password;
+	int roleid;
+	int userid;
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+	public void setRoleid(int roleid) {
+		this.roleid = roleid;
+	}
+	public int getRoleid() {
+		return roleid;
+	}
 	public String getFullname() {
 		return fullname;
 	}

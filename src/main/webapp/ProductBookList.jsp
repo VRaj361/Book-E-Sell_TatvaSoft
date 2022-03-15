@@ -14,10 +14,11 @@
 <%int userid=(Integer)session.getAttribute("userid"); 
 
 	ArrayList<SetDataBook> arr=(ArrayList<SetDataBook>)request.getAttribute("getAllData_Ed");
-	
+	ArrayList<SetDataBook> arr1=(ArrayList<SetDataBook>)request.getAttribute("getAllData_EdU");
+	int roleid=(Integer)session.getAttribute("roleid");
 %>
 
-<%if(userid==0||arr==null){ %>
+<%if(userid==0){ %>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-white gradient-custom-2 ">
         <div class="container-fluid">
             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp" style="width: 55px;
@@ -199,7 +200,10 @@
     <!-- card show -->
     <div class="container">
     <div class="row row-cols-1 row-cols-md-4 g-4 mt-4 mb-4">
+       
+       <%if(roleid==1){ %>
        <%for(SetDataBook bean:arr){ %>
+       
           <div class="col">
             <div class="card h-100">
               <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Ym9va3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" class="card-img-top h-50" alt="...">
@@ -216,9 +220,33 @@
               </div>
             </div>
           </div>
+          <%}}else{ %>
+          <%for(SetDataBook bean:arr1){ %>
+          <div class="col">
+            <div class="card h-100">
+              <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Ym9va3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" class="card-img-top h-50" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><%=bean.getTitle() %></h5>
+                <p class="card-text"><%=bean.getDescription() %></p>
+                <h4>MRP &#x20b9 <strike><%=bean.getPrice() %></strike> <span style=color:chartreuse>30% OFF</span></h4>
+                <h4>&#x20b9 <%=bean.getPrice()-((bean.getPrice()*30)/100) %></h4>
+                  <a href="AddToCartServlet?productid=<%=bean.getProductid()%>" class="btn btn-primary gradient-custom-2">Add To Cart</a> 
+
+
+                </form> 
+                
+              </div>
+            </div>
+          </div>
           
           
-          <%} %>
+          
+          <!-- add percentage of discount which is dynamic -->
+          
+          
+          
+          
+          <%}} %>
           <!-- <div class="col">
             <div class="card h-100">
               <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGJvb2t8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" class="card-img-top h-50" alt="...">

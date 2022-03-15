@@ -5,6 +5,7 @@ public class SetDataBook {
 	String fullname,title,selecttype,description,url;
 	int qty,price,userid;
 	int productid;
+	
 	public int getProductid() {
 		return productid;
 	}

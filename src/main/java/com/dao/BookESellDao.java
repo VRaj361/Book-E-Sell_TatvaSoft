@@ -15,7 +15,7 @@ public class BookESellDao {
 	
 	//add data db
 	public int insertDataDB(AddLoginDatabean bean) throws SQLException {
-		PreparedStatement pre=DBConnection.con.prepareStatement("insert into users(fullname,username,password) values(?,?,?)");
+		PreparedStatement pre=DBConnection.con.prepareStatement("insert into users (fullname,username,password,roleid) values(?,?,?,2)");
 		pre.setString(1, bean.getFullname());
 		pre.setString(2, bean.getUsername());
 		pre.setString(3, bean.getPassword());
@@ -37,22 +37,23 @@ public class BookESellDao {
 	}
 	
 	
-	public int CheckData(AddLoginDatabean bean) throws SQLException {
-		
-		PreparedStatement pre=DBConnection.con.prepareStatement("select userid from users where username=? and password=?");
+	public AddLoginDatabean CheckData(AddLoginDatabean bean) throws SQLException {
+		AddLoginDatabean b=new AddLoginDatabean();
+		PreparedStatement pre=DBConnection.con.prepareStatement("select userid,roleid from users where username=? and password=?");
 		pre.setString(1,bean.getUsername());
 		pre.setString(2, bean.getPassword());
 		ResultSet r=pre.executeQuery();
 		int count=0;
-		int userid=-1;
+		
 		if(r.next()) {
 			count++;
-			userid=(r.getInt("userid"));
+			b.setUserid(r.getInt("userid"));
+			b.setRoleid(r.getInt("roleid"));
 		}
 		if(count==1) {
-			return userid;
+			return b;
 		}
-		return -1;
+		return b;
 	}
 	
 	//add the product in database
@@ -80,7 +81,9 @@ public class BookESellDao {
 	//user can have buy functionality admin can have delete the product,change the qty,price 
 	public ArrayList<SetDataBook> getAllDataA(int userid) throws SQLException{
 		ArrayList<SetDataBook> arr=new ArrayList<SetDataBook>();
-		PreparedStatement pre=DBConnection.con.prepareStatement("select * from productsa where userid =?");
+		PreparedStatement pre=DBConnection.con.prepareStatement("select * from productsa  where userid =? ");
+		//admin can show that data using only the data of roleid 
+//		PreparedStatement pre=DBConnection.con.prepareStatement("select * from productsa inner join users on productsa.userid=users.userid  where users.userid=?");
 		pre.setInt(1, userid);
 		ResultSet r= pre.executeQuery();
 		while(r.next()) {
@@ -98,6 +101,33 @@ public class BookESellDao {
 		return arr;
 		
 	}
+	
+	
+	public ArrayList<SetDataBook> getAllDataU() throws SQLException{
+		ArrayList<SetDataBook> arr=new ArrayList<SetDataBook>();
+		PreparedStatement pre=DBConnection.con.prepareStatement("select * from productsa inner join users on productsa.userid=users.userid inner join role on role.roleid=users.roleid  where rolename=? ");
+		//admin can show that data using only the data of roleid 
+//		PreparedStatement pre=DBConnection.con.prepareStatement("select * from productsa inner join users on productsa.userid=users.userid  where users.userid=?");
+		pre.setString(1, "admin");
+		ResultSet r= pre.executeQuery();
+		while(r.next()) {
+			SetDataBook bean=new SetDataBook();
+			bean.setFullname(r.getString("fullname"));
+			bean.setTitle(r.getString("title"));
+			bean.setUrl(r.getString("url"));
+			bean.setSelecttype(r.getString("selecttype"));
+			bean.setDescription(r.getString("description"));
+			bean.setPrice(r.getInt("price"));
+			bean.setQty(r.getInt("qty"));
+			bean.setProductid(r.getInt("productid"));
+			arr.add(bean);
+		}
+		return arr;
+		
+	}
+	
+	
+	
 	
 	
 	

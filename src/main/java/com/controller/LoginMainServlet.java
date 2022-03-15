@@ -26,17 +26,19 @@ public class LoginMainServlet extends HttpServlet {
 		bean.setPassword(password);
 		
 		BookESellDao dao=new BookESellDao();
-		int check=-1;
+		
 		try {
-			check=dao.CheckData(bean);
+			bean=dao.CheckData(bean);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(check!=-1) {
+		if(bean.getRoleid()==1) {
+			System.out.println("user id => ");
 			ArrayList<SetDataBook> arr=new ArrayList<SetDataBook>();
 			HttpSession session=request.getSession();
-			session.setAttribute("userid", check);
+			session.setAttribute("userid", bean.getUserid());
+			session.setAttribute("roleid", bean.getRoleid());
 			System.out.println(session.getAttribute("userid"));
 			int userid=(Integer) session.getAttribute("userid");
 			try {
@@ -45,9 +47,26 @@ public class LoginMainServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println(arr);
 			request.setAttribute("getAllData_Ed", arr);
-			request.getRequestDispatcher("ProductBookList.jsp").forward(request, response);;
-		}else {
+			request.getRequestDispatcher("ProductBookList.jsp").forward(request, response);
+		}else if(bean.getRoleid()==2) {
+			ArrayList<SetDataBook> arr=new ArrayList<SetDataBook>();
+			HttpSession session=request.getSession();
+			session.setAttribute("userid", bean.getUserid());
+			session.setAttribute("roleid", bean.getRoleid());
+			System.out.println(session.getAttribute("userid"));
+			int userid=(Integer) session.getAttribute("userid");
+			try {
+				arr=dao.getAllDataU();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.setAttribute("getAllData_EdU", arr);
+			request.getRequestDispatcher("ProductBookList.jsp").forward(request, response);
+		}
+	else {
 			request.setAttribute("INCorrectDATA_DB", "User Doesn't exists");
 			request.getRequestDispatcher("LoginMain.jsp").forward(request, response);
 		}

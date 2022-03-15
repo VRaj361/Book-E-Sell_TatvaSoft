@@ -15,7 +15,10 @@ public class EditDataFilter implements Filter {
 		// TODO Auto-generated method stub
 		
 	}
-
+	//edit functionallity is done
+	
+	
+	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		String fullname=request.getParameter("fullname_e");
