@@ -210,8 +210,8 @@
               <div class="card-body">
                 <h5 class="card-title"><%=bean.getTitle() %></h5>
                 <p class="card-text"><%=bean.getDescription() %></p>
-                <h4>MRP &#x20b9 <strike><%=bean.getPrice() %></strike> <span style=color:chartreuse>30% OFF</span></h4>
-                <h4>&#x20b9 <%=bean.getPrice()-((bean.getPrice()*30)/100) %></h4>
+                <h4>MRP &#x20b9 <strike><%=bean.getPrice() %></strike> <span style=color:chartreuse><%=bean.getDiscount()%>% OFF</span></h4>
+                <h4>&#x20b9 <%=bean.getPrice()-((bean.getPrice()*bean.getDiscount())/100) %></h4>
                   <a href="EditDataServlet?productid=<%=bean.getProductid()%>" class="btn btn-primary gradient-custom-2">Edit</a> 
                <!--  <form action="EditDataServlet?productid=<%=bean.getProductid()%>">
                 <button class="btn btn-primary gradient-custom-2" >Edit</button>
@@ -228,8 +228,8 @@
               <div class="card-body">
                 <h5 class="card-title"><%=bean.getTitle() %></h5>
                 <p class="card-text"><%=bean.getDescription() %></p>
-                <h4>MRP &#x20b9 <strike><%=bean.getPrice() %></strike> <span style=color:chartreuse>30% OFF</span></h4>
-                <h4>&#x20b9 <%=bean.getPrice()-((bean.getPrice()*30)/100) %></h4>
+                <h4>MRP &#x20b9 <strike><%=bean.getPrice() %></strike> <span style=color:chartreuse><%=bean.getDiscount()%>% OFF</span></h4>
+                <h4>&#x20b9 <%=bean.getPrice()-((bean.getPrice()*bean.getDiscount())/100) %></h4>
                   <a href="AddToCartServlet?productid=<%=bean.getProductid()%>" class="btn btn-primary gradient-custom-2">Add To Cart</a> 
 
 

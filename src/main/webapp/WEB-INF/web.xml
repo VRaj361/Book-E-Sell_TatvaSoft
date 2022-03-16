@@ -92,4 +92,24 @@
     <servlet-name>AddToCartServlet</servlet-name>
     <url-pattern>/AddToCartServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddToCartMainServlet</display-name>
+    <servlet-name>AddToCartMainServlet</servlet-name>
+    <servlet-class>com.controller.AddToCartMainServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddToCartMainServlet</servlet-name>
+    <url-pattern>/AddToCartMainServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateDataUser</display-name>
+    <servlet-name>UpdateDataUser</servlet-name>
+    <servlet-class>com.controller.UpdateDataUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateDataUser</servlet-name>
+    <url-pattern>/UpdateDataUser</url-pattern>
+  </servlet-mapping>
 </web-app>

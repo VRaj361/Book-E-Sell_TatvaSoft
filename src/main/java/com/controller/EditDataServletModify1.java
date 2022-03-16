@@ -24,6 +24,7 @@ public class EditDataServletModify1 extends HttpServlet {
 		int price=Integer.parseInt(request.getParameter("price_e"));
 		int qty=Integer.parseInt(request.getParameter("qty_e"));
 		String url=request.getParameter("url_e");
+		int discount=Integer.parseInt(request.getParameter("discount_e"));
 		HttpSession session=request.getSession();
 		int userid=(Integer) session.getAttribute("userid");
 		int productid=(Integer) session.getAttribute("productid");
@@ -36,9 +37,10 @@ public class EditDataServletModify1 extends HttpServlet {
 		bean.setPrice(price);
 		bean.setQty(qty);
 		bean.setUserid(userid);
-		
+		bean.setDiscount(discount);
+		bean.setOprice(price-(price*discount/100));
 		BookESellDao dao=new BookESellDao();
-		
+		System.out.println("Discount  => "+discount+" price => "+price);
 		
 		try {
 			dao.modifyData(bean);

@@ -5,7 +5,26 @@ public class SetDataBook {
 	String fullname,title,selecttype,description,url;
 	int qty,price,userid;
 	int productid;
-	
+	int oprice,discount;
+	int useridu;
+	public int getUseridu() {
+		return useridu;
+	}
+	public void setUseridu(int useridu) {
+		this.useridu = useridu;
+	}
+	public int getOprice() {
+		return oprice;
+	}
+	public void setOprice(int oprice) {
+		this.oprice = oprice;
+	}
+	public int getDiscount() {
+		return discount;
+	}
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
 	public int getProductid() {
 		return productid;
 	}

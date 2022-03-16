@@ -92,6 +92,11 @@
                             <label class="form-label" for="form2Example22">Quantity</label>
                             <p class="text-danger">${qty_error}</p>
                         </div>
+                         <div class="form-outline mb-2 d-inline w-50 mb-4">
+                            <input type="text" id="form2Example22" class="form-control  w-25  d-inline " placeholder="Discount" name="discount_e"/>
+                            <label class="form-label" for="form2Example22">Discount</label>
+                            <p class="text-danger">${discount_error}</p>
+                        </div>
                         <br>
                         <div class="custom-file form-outline mb-4">
                             <input type="text" class="custom-file-input form-control" id="customFile" placeholder="Enter URL" name="url_e"> 

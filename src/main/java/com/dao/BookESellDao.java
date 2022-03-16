@@ -60,7 +60,7 @@ public class BookESellDao {
 	public void setProduct(SetDataBook bean) throws SQLException{
 		System.out.println("set production function");
 		//product id
-		PreparedStatement pre=DBConnection.con.prepareStatement("insert into productsa (fullname,userid,title,selecttype,description,url,qty,price) values (?,?,?,?,?,?,?,?)");
+		PreparedStatement pre=DBConnection.con.prepareStatement("insert into productsa (fullname,userid,title,selecttype,description,url,qty,price,discount,oprice) values (?,?,?,?,?,?,?,?,?,?)");
 		pre.setString(1, bean.getFullname());
 		pre.setInt(2, bean.getUserid());
 		pre.setString(3, bean.getTitle());
@@ -69,6 +69,8 @@ public class BookESellDao {
 		pre.setString(6, bean.getUrl());
 		pre.setInt(7, bean.getQty());
 		pre.setInt(8, bean.getPrice());
+		pre.setInt(9, bean.getDiscount());
+		pre.setInt(10, bean.getOprice());
 		int row=pre.executeUpdate();
 		System.out.println(row+" row inserted in setproduct function");
 
@@ -96,6 +98,8 @@ public class BookESellDao {
 			bean.setPrice(r.getInt("price"));
 			bean.setQty(r.getInt("qty"));
 			bean.setProductid(r.getInt("productid"));
+			bean.setDiscount(r.getInt("discount"));
+			bean.setOprice(r.getInt("oprice"));
 			arr.add(bean);
 		}
 		return arr;
@@ -119,6 +123,8 @@ public class BookESellDao {
 			bean.setDescription(r.getString("description"));
 			bean.setPrice(r.getInt("price"));
 			bean.setQty(r.getInt("qty"));
+			bean.setDiscount(r.getInt("discount"));
+			bean.setOprice(r.getInt("oprice"));
 			bean.setProductid(r.getInt("productid"));
 			arr.add(bean);
 		}
@@ -146,6 +152,8 @@ public class BookESellDao {
 			bean.setPrice(r.getInt("price"));
 			bean.setQty(r.getInt("qty"));
 			bean.setProductid(r.getInt("productid"));
+			bean.setDiscount(r.getInt("discount"));
+			bean.setOprice(r.getInt("oprice"));
 			arr.add(bean);
 		}
 		return arr;
@@ -155,22 +163,122 @@ public class BookESellDao {
 	
 	public void modifyData(SetDataBook bean) throws SQLException{
 		
-		PreparedStatement pre=DBConnection.con.prepareStatement("update productsa set fullname=?,title=?,description=?,url=?,price=?,qty=?  where productid=?");
+		PreparedStatement pre=DBConnection.con.prepareStatement("update productsa set fullname=?,title=?,description=?,url=?,price=?,qty=?,discount=?,oprice=?  where productid=?");
+		System.out.println(bean.getDiscount()+" discount");
 		pre.setString(1,bean.getFullname());
 		pre.setString(2,bean.getTitle());
 		pre.setString(3, bean.getDescription());
 		pre.setString(4,bean.getUrl());
 		pre.setInt(5, bean.getPrice());
 		pre.setInt(6,bean.getQty());
-		pre.setInt(7, bean.getProductid());
+		pre.setInt(7, bean.getDiscount());
+		pre.setInt(8, bean.getOprice());
+		pre.setInt(9, bean.getProductid());
 //		pre.setInt(1, productid);
 		int row= pre.executeUpdate();
 		System.out.println(row+" row updated");
 		
 		
 	}
+	public void addToCartData(int productid,int userid) throws SQLException{
+		PreparedStatement pre=DBConnection.con.prepareStatement("select * from productsa where productid=?");
+		pre.setInt(1, productid);
+		ResultSet s=pre.executeQuery();
+		SetDataBook bean=new SetDataBook();
+		while(s.next()) {
+			bean.setUserid(s.getInt("userid"));
+			bean.setProductid(s.getInt("productid"));
+			bean.setTitle(s.getString("title"));
+			bean.setDescription(s.getString("description"));
+			bean.setDiscount(s.getInt("discount"));
+			bean.setPrice(s.getInt("price"));
+			bean.setOprice(s.getInt("oprice"));
+			bean.setQty(s.getInt("qty"));
+			bean.setUrl(s.getString("url"));
+//			bean.setUseridu(s.getInt("useridu"));
+		}
+		System.out.println("done bean fetch");
+		PreparedStatement pre1=DBConnection.con.prepareStatement("insert into productsu (userid,productid,title,description,priceo,priced,discount,url) values (?,?,?,?,?,?,?,?)");
+		pre1.setInt(1, userid);
+		pre1.setInt(2, bean.getProductid());
+		pre1.setString(3, bean.getTitle());
+		pre1.setString(4, bean.getDescription());
+		
+		pre1.setInt(5, bean.getOprice());
+		pre1.setInt(6, bean.getPrice());
+		pre1.setInt(7, bean.getDiscount());
+		pre1.setString(8, bean.getUrl());
+		
+		int row=pre1.executeUpdate();
+		System.out.println(row+" inserted in productsu table");
+//		return bean.getUseridu();
+	}
 	
 	
+	public ArrayList<SetDataBook> addToCartShow(int userid) throws SQLException{
+		ArrayList<SetDataBook> arr=new ArrayList<SetDataBook>();
+		PreparedStatement pre=DBConnection.con.prepareStatement("select * from productsu where userid=?");
+		pre.setInt(1,userid);
+		ResultSet s=pre.executeQuery();
+		
+		while(s.next()) {
+			SetDataBook bean=new SetDataBook();
+			
+			bean.setTitle(s.getString("title"));
+			bean.setUrl(s.getString("url"));
+			bean.setDescription(s.getString("description"));
+			bean.setPrice(s.getInt("priced"));
+			bean.setQty(s.getInt("qty"));
+			bean.setProductid(s.getInt("productid"));
+			bean.setDiscount(s.getInt("discount"));
+			bean.setOprice(s.getInt("priceo"));
+			
+			arr.add(bean);
+		}
+		return arr;
+		
+		
+	}
+	
+	
+	public int ModifyCart(int productid,int qty) throws SQLException{
+		PreparedStatement pre=DBConnection.con.prepareStatement("select qty,price,oprice from productsa where productid=? ");
+		pre.setInt(1, productid);
+		ResultSet s=pre.executeQuery();
+		int updated=-1;
+		int price=-1;
+		int priceo=-1;
+		while(s.next()) {
+			price=s.getInt("price");
+			priceo=s.getInt("oprice");
+			if(s.getInt("qty")>=qty) {
+				updated=s.getInt("qty")-qty;
+			}else {
+				System.out.println("overprice");
+				return qty-s.getInt("qty");
+			}
+		}
+		PreparedStatement pre1=DBConnection.con.prepareStatement("update productsa set qty=?  where productid=? ");
+		pre1.setInt(1, updated);
+		pre1.setInt(2, productid);
+		int row=pre1.executeUpdate();
+		
+		System.out.println(row+ "update in modifycart in admin");
+		
+		//qty,price
+		
+		PreparedStatement pre2=DBConnection.con.prepareStatement("update productsu set qty=?,priced=?,priceo=?  where productid=? ");
+		pre2.setInt(1, qty);
+		pre2.setInt(2, qty*price);
+		pre2.setInt(3, qty*priceo);
+		pre2.setInt(4, productid);
+		int row1=pre2.executeUpdate();
+		System.out.println(row1+ " update in modifycart in user");
+		
+		
+		return 1;
+		
+	}
 	
 	
 }

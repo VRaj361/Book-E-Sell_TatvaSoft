@@ -25,8 +25,9 @@ public class EditMainFilter implements Filter{
 		String description=request.getParameter("descrption_e");
 		String price=request.getParameter("price_e");
 		String qty=request.getParameter("qty_e");
+		String discount=request.getParameter("discount_e");
 		String url=request.getParameter("url_e");
-		System.out.println(fullname+" "+title+" "+select+" "+description+" "+price+" "+qty+" "+url);
+		System.out.println(fullname+" "+title+" "+select+" "+description+" "+price+" "+qty+" "+url+ " "+discount);
 		
 		
 		boolean is_check=false;
@@ -46,7 +47,13 @@ public class EditMainFilter implements Filter{
 		} if(price==null||price.trim().length()==0) {
 			is_check=true;
 			request.setAttribute( "price_error","Please Enter Price");
-		} if(qty==null||qty.trim().length()==0) {
+		} if(discount==null||discount.trim().length()==0||(Integer.parseInt(discount)<0&&Integer.parseInt(discount)>100) ) {
+			is_check=true;
+			request.setAttribute( "discount_error","Please Enter Discount");
+		}
+		
+		
+		if(qty==null||qty.trim().length()==0) {
 			is_check=true;
 			request.setAttribute( "qty_error","Please Enter Qty");
 		} if(url==null||url.trim().length()==0) {

@@ -22,6 +22,7 @@ public class EditMainServlet extends HttpServlet {
 		String description=request.getParameter("descrption_e");
 		int price=Integer.parseInt(request.getParameter("price_e"));
 		int qty=Integer.parseInt(request.getParameter("qty_e"));
+		int discount=Integer.parseInt(request.getParameter("discount_e"));
 		String url=request.getParameter("url_e");
 		HttpSession session=request.getSession();
 		int userid=(Integer) session.getAttribute("userid");
@@ -33,6 +34,8 @@ public class EditMainServlet extends HttpServlet {
 		bean.setDescription(description);
 		bean.setPrice(price);
 		bean.setQty(qty);
+		bean.setDiscount(discount);
+		bean.setOprice(price-(price*discount/100));
 		bean.setUserid(userid);
 		
 		BookESellDao dao=new BookESellDao();

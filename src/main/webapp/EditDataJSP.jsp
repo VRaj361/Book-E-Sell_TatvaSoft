@@ -81,6 +81,11 @@
                             <label class="form-label mb-4" for="form2Example22 ">Price</label>
                             <p class="text-danger">${price_error}</p>
                         </div>
+                        <div class="form-outline mb-2 d-inline w-50 ">
+                            <input type="text" id="form2Example22" class="form-control w-25  d-inline" placeholder="Discount" name="discount_e" value="<%= bean.getDiscount() %>" />
+                            <label class="form-label mb-4" for="form2Example22 ">Discount</label>
+                            <p class="text-danger">${discount_error}</p>
+                        </div>
                         <div class="form-outline mb-2 d-inline w-50 mb-4">
                             <input type="text" id="form2Example22" class="form-control  w-25  d-inline " placeholder="Qty" name="qty_e" value="<%= bean.getQty()%>"/>
                             <label class="form-label" for="form2Example22">Quantity</label>
