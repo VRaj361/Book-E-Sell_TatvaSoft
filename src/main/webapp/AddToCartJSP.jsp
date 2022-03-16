@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add To Cart</title>
+<link rel="icon" type="image/x-icon" href="IMAGES/favicon.png">
 <link rel="stylesheet" href="CSS/style1.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -32,7 +33,7 @@
 				<ul class="navbar-nav">
 
 					<li class="nav-item"><a class="nav-link addtocard"
-						href="LogoutMain.jsp">Logout</a></li>
+						href="LogoutServlet">Logout</a></li>
 				</ul>
 			</div>
 			<form class="d-flex">
@@ -107,6 +108,12 @@
 
 		</div>
 		<%}} %>
+		
+		<a href="Placeorder"><button>Place Order</button></a>
+		
+		
+		
+		
 	</div>
 
 

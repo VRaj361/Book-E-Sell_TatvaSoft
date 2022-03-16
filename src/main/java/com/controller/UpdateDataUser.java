@@ -41,12 +41,11 @@ public class UpdateDataUser extends HttpServlet {
 		
 	}
 
-	//logout
-	//signup redirect on home page
-	//every page should contain logout button
-	//logout page should destroyed session
-	//
+	//sign up get's redirect on home page and
+	//place order button click can show the bill with all tax discount and all the thinks show at bill format
 	
+	
+
 	
 	
 	

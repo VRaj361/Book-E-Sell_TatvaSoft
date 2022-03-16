@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Login</title>
+<link rel="icon" type="image/x-icon" href="IMAGES/favicon.png">
  <link rel="stylesheet" href="CSS/style1.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
@@ -27,10 +28,7 @@
               </li>
             </ul>
           </div>
-          <form class="d-flex">
-            <img src="IMAGES/858715_add_add to cart_cart_shopping cart_shopping cart icon_icon.png" class="mx-2 btn-close-white" >
-            <button class="btn  text-white addtocard fw-bold" type="submit">Add to Cart</button>
-          </form>
+          
         </div>
     </nav>
     <!-- end of nav bar -->
@@ -77,7 +75,7 @@
       
                         <div class="d-flex align-items-center justify-content-center pb-4">
                           <p class="mb-0 me-2">Don't have an account?</p>
-                          <button type="button" class="btn btn-outline-danger">Create new</button>
+                          <a href="SignupMain.jsp"><button type="button" class="btn btn-outline-danger">Create new</button></a>
                         </div>
       
                       </form>

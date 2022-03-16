@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Home</title>
+<link rel="icon" type="image/x-icon" href="IMAGES/favicon.png">
 <link rel="stylesheet" href="CSS/style1.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
@@ -32,12 +33,16 @@
               <li class="nav-item mx-2">
                 <a class="nav-link active addtocard "  href="EditPage.jsp">Add Product</a>
               </li>
-              
+            
+
+					<li class="nav-item"><a class="nav-link addtocard"
+						href="LogoutServlet">Logout</a></li>
+				
             </ul>
           </div>
-          <form class="d-flex">
+          <form class="d-flex" >
             <img src="IMAGES/858715_add_add to cart_cart_shopping cart_shopping cart icon_icon.png" class="mx-2 btn-close-white" >
-            <button class="btn  text-white addtocard fw-bold" type="submit">Add to Cart</button>
+            <a href="AddToCartMainServlet"><button class="btn  text-white addtocard fw-bold" type="submit">Add to Cart</button></a>
           </form>
         </div>
     </nav>
@@ -166,14 +171,15 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
+          <%if(roleid==1){ %>
             <ul class="navbar-nav">
               <li class="nav-item mx-2">
                 <a class="nav-link active addtocard "  href="EditPage.jsp">Add Product</a>
               </li>
-              
+           <%} %>
             </ul>
           </div>
-          <form class="d-flex">
+          <form class="d-flex" action="AddToCartMainServlet">
             <img src="IMAGES/858715_add_add to cart_cart_shopping cart_shopping cart icon_icon.png" class="mx-2 btn-close-white" >
             <button class="btn  text-white addtocard fw-bold" type="submit">Add to Cart</button>
           </form>
