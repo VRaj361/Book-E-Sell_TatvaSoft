@@ -232,7 +232,7 @@ public class BookESellDao {
 			bean.setProductid(s.getInt("productid"));
 			bean.setDiscount(s.getInt("discount"));
 			bean.setOprice(s.getInt("priceo"));
-			
+			bean.setUseridu(s.getInt("useridu"));
 			arr.add(bean);
 		}
 		return arr;
@@ -277,6 +277,17 @@ public class BookESellDao {
 		
 		
 		return 1;
+		
+	}
+	
+	public void removeDataCart(int useridu) throws SQLException {
+		System.out.println("removedatacart");
+		PreparedStatement pre=DBConnection.con.prepareStatement("delete from productsu where useridu=?");
+		pre.setInt(1, useridu);
+		
+		int row =pre.executeUpdate();
+		System.out.println(row+" Row deleted");
+		
 		
 	}
 	

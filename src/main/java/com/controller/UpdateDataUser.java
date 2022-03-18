@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dao.BookESellDao;
 
@@ -18,6 +20,8 @@ public class UpdateDataUser extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int productid=Integer.parseInt( request.getParameter("productid_send"));
 		int inputqty=Integer.parseInt(request.getParameter("inputqty"));
+		Cookie c=new Cookie("qtyvalue",Integer.toString(inputqty));
+		response.addCookie(c);
 		
 		System.out.println(productid+" "+inputqty);
 		
@@ -44,8 +48,8 @@ public class UpdateDataUser extends HttpServlet {
 	
 	//place order button click can show the bill with all tax discount and all the thinks show at bill format
 	//remove cart funcationallity
-	
-
+	//nos is print with bill
+	//photo is add using link
 	
 	
 	

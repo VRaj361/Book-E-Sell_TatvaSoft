@@ -47,7 +47,10 @@
 	</nav>
 
 
-	<div class="container">
+	<div class="container" style=" min-height: 110%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -182px;">
 		<hr class="">
 		<h1 class="text-center ">Add to card</h1>
 		<hr class="">
@@ -66,14 +69,15 @@
 					
 
 			<%
-			} else {
+			} else {%>
 
-			for (SetDataBook bean : arr) {
-			%>
 
 
 
 			<div class="card mb-3" style="background-color: white;">
+			<% 
+			for (SetDataBook bean : arr) {
+			%>
 				<div class="row g-3 w-100  ">
 					<div
 						class="col-md-2 d-flex align-items-center justify-content-center">
@@ -101,12 +105,43 @@
 							<h4>
 								&#x20b9
 								<%=bean.getOprice()%></h4>
+								
+								
+		
+								
+								
 							<form action="UpdateDataUser">
+								
+								
 								<input type="hidden" name="productid_send"
-									value="<%=bean.getProductid()%>"> <input
-									class="d-inline-block " value="1" type="number" name="inputqty">
-
+									value="<%=bean.getProductid()%>">
+									 <input
+									class="d-inline-block " value="1" type="number" name="inputqty"> <%="     "+bean.getQty() +" Nos " %>
+									<%
+									int qtyupdate=-1;
+									Cookie c[]=request.getCookies();
+									for(Cookie x:c){
+										if(x.getName().equals("qtyvalue")){
+											qtyupdate=Integer.parseInt(x.getValue());
+										}
+									}
+										if(qtyupdate>0){
+									
+									%>
+									<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+									<a class="btn gradient-custom-2 text-white me-md-2"
+										href="RemoveItemAddToCartServlet?useridu=<%=bean.getUseridu()%>">Remove the Cart</a>
+										
+										<%}else{%>
+											
+											<div class="d-grid gap-2 d-md-flex justify-content-md-end" style="display: none;">
+											<a class="btn gradient-custom-2 text-white me-md-2"
+												href="RemoveItemAddToCartServlet?useridu=<%=bean.getUseridu()%>"></a>
+											
+									<% 	} %>
+										
 								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+							
 									<button class="btn gradient-custom-2 text-white me-md-2"
 										type="submit">Confirm</button>
 
@@ -116,19 +151,24 @@
 						</div>
 					</div>
 				</div>
-
+				<hr class="w-75 mx-auto">
+				
 			</div>
 
-			<a href="Placeorder"><button
-					class="btn text-white  gradient-custom-2  ">Place Order</button></a>
+			
 			<%
 			}
 			}
 			%>
+		<%if (arr != null || arr.size() != 0) { %>
 		
+		<a href="PlaceorderServlet" class=mx-auto><button
+					class="btn text-white  gradient-custom-2 mb-5  ">Place Order</button></a>
+		
+		<%} %>
 	</div>
 
-
+	
 
 
 	<footer

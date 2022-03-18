@@ -122,4 +122,24 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/LogoutServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PlaceorderServlet</display-name>
+    <servlet-name>PlaceorderServlet</servlet-name>
+    <servlet-class>com.controller.PlaceorderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PlaceorderServlet</servlet-name>
+    <url-pattern>/PlaceorderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RemoveItemAddToCartServlet</display-name>
+    <servlet-name>RemoveItemAddToCartServlet</servlet-name>
+    <servlet-class>com.controller.RemoveItemAddToCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveItemAddToCartServlet</servlet-name>
+    <url-pattern>/RemoveItemAddToCartServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
