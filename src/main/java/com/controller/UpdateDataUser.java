@@ -41,9 +41,9 @@ public class UpdateDataUser extends HttpServlet {
 		
 	}
 
-	//sign up get's redirect on home page and
-	//place order button click can show the bill with all tax discount and all the thinks show at bill format
 	
+	//place order button click can show the bill with all tax discount and all the thinks show at bill format
+	//remove cart funcationallity
 	
 
 	

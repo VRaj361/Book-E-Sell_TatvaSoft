@@ -2,6 +2,7 @@ package com.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bean.AddLoginDatabean;
+import com.bean.SetDataBook;
 import com.dao.BookESellDao;
 
 
@@ -35,9 +37,22 @@ public class SignupMainServlet extends HttpServlet {
 		}
 		HttpSession session=request.getSession();
 		session.setAttribute("userid", userid);
+		session.setAttribute("roleid", 2);
+
 		//session code
 		
-		response.sendRedirect("BookESellHomeJSP.jsp");
+//		response.sendRedirect("BookESellHomeJSP.jsp");
+		ArrayList<SetDataBook> arr=new ArrayList<SetDataBook>();
+		System.out.println(session.getAttribute("userid"));
+		
+		try {
+			arr=dao.getAllDataU();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.setAttribute("getAllData_EdU", arr);
+		request.getRequestDispatcher("ProductBookList.jsp").forward(request, response);
 		
 		
 		

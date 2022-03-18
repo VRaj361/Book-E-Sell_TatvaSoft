@@ -36,7 +36,7 @@
 						href="LogoutServlet">Logout</a></li>
 				</ul>
 			</div>
-			<form class="d-flex">
+			<form class="d-flex" action="AddToCartMainServlet">
 				<img
 					src="IMAGES/858715_add_add to cart_cart_shopping cart_shopping cart icon_icon.png"
 					class="mx-2 btn-close-white">
@@ -51,80 +51,92 @@
 		<hr class="">
 		<h1 class="text-center ">Add to card</h1>
 		<hr class="">
+
+		<%
+		ArrayList<SetDataBook> arr = (ArrayList<SetDataBook>) request.getAttribute("AddtocartShow");
 		
-		<%ArrayList<SetDataBook> arr=(ArrayList<SetDataBook>)request.getAttribute("AddtocartShow");
-		if(arr==null){
+
 		
+		if (arr == null || arr.size() == 0) {
 		%>
-		<h1>Your Cart is empty</h1>
-		
-		<%}else{
-			
-			for(SetDataBook bean:arr){	
-			
+
+
+		<p class="text-center " style="letter-spacing: 2px; font-size: 5rem;">Your
+			Cart is Empty</p>
+					
+
+			<%
+			} else {
+
+			for (SetDataBook bean : arr) {
 			%>
-		
-		
-		
-		<div class="card mb-3" style="background-color: white;">
-			<div class="row g-3 w-100  ">
-				<div
-					class="col-md-2 d-flex align-items-center justify-content-center">
-					<img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Ym9va3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-						alt="" width="200px" height="250px" style="object-fit: fill;">
-				</div>
-				<div class="col-md-10 ">
-					<div class="card-body text-left">
-
-						<h5 class="card-title mb-3">
-							Title: <input type="submit" value=""
-								style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;"
-								name="linkQuestionTitle"><%=bean.getTitle() %>
-						</h5>
-
-						<h5 class="card-title"><%=bean.getDescription() %></h5>
 
 
 
-						<h4>
-							MRP &#x20b9 <strike><%=bean.getPrice() %></strike> <span style="color: chartreuse"><%=bean.getDiscount() %>%
-								OFF</span>
-						</h4>
-						<h4>&#x20b9 <%=bean.getOprice() %></h4>
-						<form action="UpdateDataUser">
-						<input type="hidden" name="productid_send" value="<%=bean.getProductid()%>">
-						<input class="d-inline-block " value="1" type="number" name="inputqty" >
+			<div class="card mb-3" style="background-color: white;">
+				<div class="row g-3 w-100  ">
+					<div
+						class="col-md-2 d-flex align-items-center justify-content-center">
+						<img
+							src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Ym9va3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+							alt="" width="200px" height="250px" style="object-fit: fill;">
+					</div>
+					<div class="col-md-10 ">
+						<div class="card-body text-left">
 
-						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-							<button class="btn gradient-custom-2 text-white me-md-2"
-								type="submit">Confirm</button>
+							<h5 class="card-title mb-3">
+								Title: <input type="submit" value=""
+									style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;"
+									name="linkQuestionTitle"><%=bean.getTitle()%>
+							</h5>
+
+							<h5 class="card-title"><%=bean.getDescription()%></h5>
+
+
+
+							<h4>
+								MRP &#x20b9 <strike><%=bean.getPrice()%></strike> <span
+									style="color: chartreuse"><%=bean.getDiscount()%>% OFF</span>
+							</h4>
+							<h4>
+								&#x20b9
+								<%=bean.getOprice()%></h4>
+							<form action="UpdateDataUser">
+								<input type="hidden" name="productid_send"
+									value="<%=bean.getProductid()%>"> <input
+									class="d-inline-block " value="1" type="number" name="inputqty">
+
+								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+									<button class="btn gradient-custom-2 text-white me-md-2"
+										type="submit">Confirm</button>
+
+								</div>
+							</form>
 
 						</div>
-						</form>
-
 					</div>
 				</div>
+
 			</div>
 
-		</div>
-		<%}} %>
-		
-		<a href="Placeorder"><button>Place Order</button></a>
-		
-		
-		
+			<a href="Placeorder"><button
+					class="btn text-white  gradient-custom-2  ">Place Order</button></a>
+			<%
+			}
+			}
+			%>
 		
 	</div>
 
 
 
 
-		<footer
-			class="page-footer font-small blue gradient-custom-2 fixed-bottom mt-4">
-			<div class="footer-copyright text-center py-3 text-white">
-				© 2020 Copyright: <a href="https://FlipBook.com/" class="text-white">
-					Flipbook.com</a>
-			</div>
-		</footer>
+	<footer
+		class="page-footer font-small blue gradient-custom-2 fixed-bottom mt-4">
+		<div class="footer-copyright text-center py-3 text-white">
+			© 2020 Copyright: <a href="https://FlipBook.com/" class="text-white">
+				Flipbook.com</a>
+		</div>
+	</footer>
 </body>
 </html>
